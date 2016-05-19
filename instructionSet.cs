@@ -11,11 +11,11 @@ namespace _11InstrurctionSet
         static void Main(string[] args)
         {
             string[] codeArgs = Console.ReadLine().ToUpper().Split(' ');
-            string opCode = Console.ReadLine().ToLower();
+            string opCode = string.Empty;
 
             while (opCode != "end")
             {
-                long result = 0;
+                decimal result = 0;
                 switch (codeArgs[0])
                 {
                     case "INC":
