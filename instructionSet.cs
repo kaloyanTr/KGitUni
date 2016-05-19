@@ -1,47 +1,59 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _11InstrurctionSet
+namespace _01instructionSet
 {
     class instructionSet
     {
         static void Main(string[] args)
         {
-            string[] codeArgs = Console.ReadLine().ToUpper().Split(' ');
             string opCode = string.Empty;
-
-            while (opCode != "end")
+            decimal result = 0;
+            List<decimal> output = new List<decimal>();
+            while (opCode != "END")
             {
-                decimal result = 0;
-                switch (codeArgs[0])
+                if (opCode != string.Empty)
                 {
-                    case "INC":
-                        int operandOne = int.Parse(codeArgs[1]);
-                        result += operandOne;
-                        break;
-                    case "DEC":
-                        operandOne = int.Parse(codeArgs[1]);
-                        result -= operandOne;
-                        break;
-                    case "ADD":
-                        operandOne = int.Parse(codeArgs[1]);
-                        int operandTwo = int.Parse(codeArgs[2]);
-                        result = operandOne + operandTwo;
-                        break;
-                    case "MLA":
-                        operandOne = int.Parse(codeArgs[1]);
-                        operandTwo = int.Parse(codeArgs[2]);
-                        result = (long)operandOne * (long)operandTwo;
-                        break;
-                    default:
-                        break;
-
+                    string[] codeArgs = opCode.Split(' ');
+                    switch (codeArgs[0])
+                    {
+                        case "INC":
+                            {
+                                result = decimal.Parse(codeArgs[1]);
+                                result++;
+                                break;
+                            }
+                        case "DEC":
+                            {
+                                result = decimal.Parse(codeArgs[1]);
+                                result--;
+                                break;
+                            }
+                        case "ADD":
+                            {
+                                decimal operandOne = decimal.Parse(codeArgs[1]);
+                                decimal operandTwo = decimal.Parse(codeArgs[2]);
+                                result = operandOne + operandTwo;
+                                break;
+                            }
+                        case "MLA":
+                            {
+                                decimal operandOne = decimal.Parse(codeArgs[1]);
+                                decimal operandTwo = decimal.Parse(codeArgs[2]);
+                                result = operandOne * operandTwo;
+                                break;
+                            }
+                    }
+                    output.Add(result);
                 }
-
-                Console.WriteLine(result);
+                opCode = Console.ReadLine();
+            }
+            foreach (var item in output)
+            {
+                Console.WriteLine(item);
             }
         }
     }
